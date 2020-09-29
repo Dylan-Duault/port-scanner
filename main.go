@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/cheggaaa/pb/v3"
 	"math"
 	"net"
 	"os"
 	"sort"
-	"github.com/cheggaaa/pb/v3"
 )
 
 func worker(ports, results chan uint, url string) {
@@ -25,7 +25,7 @@ func worker(ports, results chan uint, url string) {
 
 func main() {
 
-	url := flag.String("url", "127.0.0.1", "URL or IP on wich on want to run the test.")
+	url := flag.String("url", "scanme.nmap.org", "URL or IP on wich on want to run the test.")
 	startPort := flag.Uint("startPort", 1, "Start scanning from this port")
 	endPort := flag.Uint("endPort", 65535, "Makes  curl  verbose  during the operation.")
 	workersCount := flag.Uint("workersCount", 1000, "Makes  curl  verbose  during the operation.")
@@ -42,7 +42,6 @@ func main() {
 	ports := make(chan uint, *workersCount)
 	results := make(chan uint)
 	var openports []uint
-
 
 	for i := 0; i < cap(ports); i++ {
 		go worker(ports, results, *url)
