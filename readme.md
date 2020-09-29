@@ -16,5 +16,5 @@ You can either compile the source code and run it on your desired platform, or i
 ./main --startPort=1 --endPort=65535 --workersCount=1000 --url=scanme.nmap.org
 ```
 
-# #Compatibility
+## Compatibility
 This software should run on MacOS, Linux and Windows.
